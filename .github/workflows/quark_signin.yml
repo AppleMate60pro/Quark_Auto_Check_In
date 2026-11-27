@@ -51,16 +51,6 @@ jobs:
         if: steps.cache-success.outputs.cache-hit != 'true'
         uses: actions/checkout@v5
 
-      - name: 随机延迟
-        if: steps.cache-success.outputs.cache-hit != 'true'
-        shell: bash
-        run: |
-          # 外部触发时延迟可以短一点
-          max_delay=3
-          delay=$((RANDOM % (max_delay + 1)))
-          echo "随机延迟 ${delay} 秒后开始执行。"
-          sleep "$delay"
-
       - name: 设置 Python 环境
         if: steps.cache-success.outputs.cache-hit != 'true'
         uses: actions/setup-python@v6
